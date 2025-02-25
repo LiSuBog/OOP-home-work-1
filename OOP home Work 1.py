@@ -66,6 +66,16 @@ class Lecturer(Mentor):
         count = sum([len(grades) for grades in self.grades.values()])
         return total / count if count > 0 else 0
 
+    def __eq__(self, other):
+        if isinstance(other, Lecturer):
+            return self.get_average_grade() == other.get_average_grade()
+        return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, Lecturer):
+            return self.get_average_grade() < other.get_average_grade()
+        return NotImplemented
+
 class Student:
     def __init__(self, name, surname, gender):
         self.name = name
@@ -94,6 +104,16 @@ class Student:
         total = sum([sum(grades) for grades in self.grades.values()])
         count = sum([len(grades) for grades in self.grades.values()])
         return total / count if count > 0 else 0
+
+    def __eq__(self, other):
+        if isinstance(other, Student):
+            return self.get_average_grade() == other.get_average_grade()
+        return NotImplemented
+
+    def __lt__(self, other):
+        if isinstance(other, Student):
+            return self.get_average_grade() < other.get_average_grade()
+        return NotImplemented
 
 # Создание экземпляров
 student_1 = Student('Ruoy', 'Eman', 'your_gender')
